@@ -14,28 +14,22 @@ public Node() {
 }
 
 //insert method
-  public void insert (Node root, String sequence) {
-
-    for (int i=0; i < sequence.length(); i++) {
-       char currentChar = sequence.charAt(i);
-       System.out.print(currentChar);
-    }
-
+  public void insert (Node node, String sequence, int i) {
+    if (i < sequence.length()){
+      char letter = sequence.charAt(i);
+      if (node == null) {
+        node.children[letter] = new Node();
+      }
+      insert(node.children[letter], sequence, i + 1);
+    } else {
+      node.children["$"] = new Node();
+    } 
   }
 
 //print method
   public String print() {
     String s = "temp";
     return s;
-  }
-
-//method to check if a node is a leaf or an interior node
-  public boolean isLeaf(Node node) {
-    if (node.children == null) {
-      return true;
-    } else {
-      return false;
-    }
   }
 
 }

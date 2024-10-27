@@ -15,7 +15,7 @@ public class DNAtree {
                 if (line.contains("insert")) {
                     String parts[] = line.split(" ");
                     String input = parts[1];
-                    rootNode.insert(rootNode, input); //edit this
+                    rootNode.insert(rootNode, input, 0); //edit this
                 } else if (line.contains("print")) {
                     rootNode.print();
                 }
