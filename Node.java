@@ -17,6 +17,10 @@ public Node() {
 //insert method
   public void insert (Node node, String sequence, int i) {
 
+  /*he said that is it a leaf did not need to be included inside of this if statment and
+   * could instead happen before it
+   */
+
     //set the current letter to the correct one in the sequence
     if (i < sequence.length()){
       char letter = sequence.charAt(i);
@@ -30,12 +34,20 @@ public Node() {
         if (node.isLeaf == true) {
           node.children[letter] = new Node();
           insert(node.children[letter], sequence, i + 1);
+
+          /*in this if statment he said there needed to be a spot where this node is changed
+           * to no longer be a leaf node since its not anymore since it now has a child node
+           */
         }
 
         //if the node is null create a new node
         if (node == null) {
           node.children[letter] = new Node();
           insert(node.children[letter], sequence, i + 1);
+
+          /*im struggling to remember what he said about this one but he said it was wrong 
+           * whatever he said he made it sound like it was much simpler
+           */
         }
     }
   }
