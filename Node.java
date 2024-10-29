@@ -11,6 +11,7 @@ public class Node {
 public Node() {
   int level = 0;
   children = null;
+
 }
 
 //insert method
