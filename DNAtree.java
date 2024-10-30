@@ -5,7 +5,7 @@ public class DNAtree {
     public static void main(String[] args) throws Exception {
         String fileName = args[0];
 
-        Node rootNode = new Node();
+        Node rootNode = new Node(null);
 
         try{
             File file = new File (fileName);
