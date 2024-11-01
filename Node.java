@@ -10,41 +10,71 @@ public class Node {
 
   public Node(String data) {
     this.data = data;
+    children = null;
 }
 
 //insert method
   public void insert (Node node, String sequence, int i) {
+    //base case - if no tree exists yet
+    if (node == null) {
+      Node root = new Node(sequence);
+    }
 
     //set the current letter to the correct one in the sequence
     if (i < sequence.length()){
       char letter = sequence.charAt(i);
+      int letterNumber = letterNum(letter);
 
-        //if the node is not a leaf then do not create a new node and use the exsiting one
-        if (node.isLeaf == false) {
-          if (node.children[letter] == null) {
-            Node newNode = new Node(null);
-            node.children[letter] = newNode;
-          }
-          insert(node.children[letter], sequence, i + 1);
-        }
 
-        //if the node is a leaf then create a new node to put the current character in
-        if (node.isLeaf == true) {
-          node.isLeaf = false;
-          node.children[letter] = new Node(null);
-          insert(node.children[letter], sequence, i + 1);
-        }
-        System.out.println(node);
-    } /*else if (i == sequence.length()) {
-      node.children["$"] = new Node(sequence);
+    if (node.data != null && node.level() == 0) {
+      String s = node.data;
+      node.data = null;
+      node.isLeaf = false; //not sure about this
+      insert (node.children[letterNumber], s, i);
+      insert(node.children[letterNumber], sequence, i);
+    } else if (node.data != null && node.level() != 0) {
+        node.children[4] = new Node(node.data);
+        node.data = null;
+        node.isLeaf = false; //not sure about this
+        insert (node.children[letter], sequence, i);
+    }
 
-    }*/
+    //does it matter if it is a leaf or not?
+    if (node.children[letterNumber] == null && node.data == null) {
+      insert(node.children[letterNumber] = new Node(null), sequence, i);
+    }
+
+    if (node.children[letterNumber] != null && node.data == null) {
+      insert(node.children[letterNumber], sequence, i);
+    }
+    //end of sequence insert sequence into last node
   }
+  node.data = sequence;
+}
 
 //print method
   public String print() {
     String s = "temp";
     return s;
+  }
+
+  public int letterNum(char c){
+    if (c == 'A') {
+      return 0;
+    }
+    if (c == 'C') {
+      return 1;
+    }
+    if (c == 'G') {
+      return 2;
+    }
+    if (c == 'T') {
+      return 3;
+    }
+    return 4;
+  }
+
+  private int level (Node node) {
   }
 
 }
