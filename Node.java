@@ -26,30 +26,18 @@ public class Node {
       int letterNumber = letterNum(letter);
 
 
-    if (node.data != null && node.level() == 0) {
+    if (node.isLeaf) {
       String s = node.data;
       node.data = null;
       node.isLeaf = false; //not sure about this
-      insert (node.children[letterNumber], s, i);
+      insert (node, s, i++);
       insert(node.children[letterNumber], sequence, i);
-    } else if (node.data != null && node.level() != 0) {
-        node.children[4] = new Node(node.data);
-        node.data = null;
-        node.isLeaf = false; //not sure about this
-        insert (node.children[letter], sequence, i);
+    } else if (!node.isLeaf) {
+      if (node.children[letterNumber] == null) {
+        node.children[letter] = new Node(sequence);
+      }
     }
-
-    //does it matter if it is a leaf or not?
-    if (node.children[letterNumber] == null && node.data == null) {
-      insert(node.children[letterNumber] = new Node(null), sequence, i);
-    }
-
-    if (node.children[letterNumber] != null && node.data == null) {
-      insert(node.children[letterNumber], sequence, i);
-    }
-    //end of sequence insert sequence into last node
   }
-  node.data = sequence;
 }
 
 //print method
@@ -73,8 +61,4 @@ public class Node {
     }
     return 4;
   }
-
-  private int level (Node node) {
-  }
-
 }
