@@ -25,25 +25,36 @@ public class Node {
       char letter = sequence.charAt(i);
       int letterNumber = letterNum(letter);
 
+      if (node.isLeaf) {
+        String s = node.data;
+        node.data = null;
+        node.isLeaf = false; //not sure about this
+        insert (node, s, i++);
+        insert(node.children[letterNumber], sequence, i);
+      } else if (!node.isLeaf) {
 
-    if (node.isLeaf) {
-      String s = node.data;
-      node.data = null;
-      node.isLeaf = false; //not sure about this
-      insert (node, s, i++);
-      insert(node.children[letterNumber], sequence, i);
-    } else if (!node.isLeaf) {
-      if (node.children[letterNumber] == null) {
-        node.children[letter] = new Node(sequence);
+        if(node.children[letterNumber] == null) {
+
+          node.children[letter] = new Node(sequence);
+        }
       }
     }
-  }
 }
 
+
 //print method
-  public String print() {
-    String s = "temp";
-    return s;
+  public void print(Node node) {
+    if (node == null) {
+      return;
+    }
+    System.out.println(node);
+    print(node.children[0]);
+    print(node.children[1]);
+    print(node.children[2]);
+    print(node.children[3]);
+    print(node.children[4]);
+
+    String s = "tree dump:";
   }
 
   public int letterNum(char c){

@@ -12,12 +12,15 @@ public class DNAtree {
             Scanner fileReader = new Scanner(file);
             while (fileReader.hasNextLine()) {
                 String line = fileReader.nextLine();
+                System.out.println(line);
+
                 if (line.contains("insert")) {
                     String parts[] = line.split(" ");
                     String input = parts[1];
                     rootNode.insert(rootNode, input, 0); //edit this
                 } else if (line.contains("print")) {
-                    rootNode.print();
+                    System.out.println("trying to print");
+                    rootNode.print(rootNode);
                 }
             }
         } catch (FileNotFoundException e) {
