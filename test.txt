@@ -1,2 +1,2 @@
-insert ACGT
+insert ACT
 print
