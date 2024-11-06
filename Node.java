@@ -11,7 +11,11 @@ public class Node {
 
   public Node(String data) {
     this.data = data;
+    this.isLeaf = true;
 }
+
+  public Node() {
+  }
 
 //insert method
   public void insert (Node node, String sequence, int i) {
@@ -30,10 +34,13 @@ public class Node {
         node.data = null;
         node.isLeaf = false; //not sure about this
         insert (node, s, i++);
-        insert(node.children[letterNumber], sequence, i);
+        insert(node.children[letterNumber], sequence, i++);
       } else if (!node.isLeaf) {
         if(node.children[letterNumber] == null) {
           node.children[letterNumber] = new Node(sequence);
+        }
+        else {
+          insert(node.children[letterNumber], sequence, i);
         }
       }
     }
@@ -43,35 +50,53 @@ public class Node {
 //print method
   public void print(Node node, int level) {
     if (node == null) {
+      System.out.println("E");
       return;
     }
-      System.out.println(node.data);
-      print(node.children[0], level + 1);
-      if(node.children[0] == null) {
-        node.data = "E";
-        System.out.println(node.data);
+      if (!node.isLeaf) {
+        System.out.println("I");
+        print(node.children[0], level + 1);
+        print(node.children[1], level + 1);
+        print(node.children[2], level + 1);
+        print(node.children[3], level + 1);
+        print(node.children[4], level + 1);
+      }
+      if (node.isLeaf) {
+        if (node.data != null){
+          System.out.println(node.data);
         }
-      print(node.children[1], level + 1);
-      if(node.children[1] == null) {
-        node.data = "E";
-        System.out.println(node.data);
       }
-      print(node.children[2], level + 1);
-      if(node.children[2] == null) {
-        node.data = "E";
-        System.out.println(node.data);
-      }
-      print(node.children[3], level + 1);
-      if(node.children[3] == null) {
-        node.data = "E";
-        System.out.println(node.data);
-      }
-      print(node.children[4], level + 1);
-      if(node.children[4] == null) {
-        node.data = "E";
-        System.out.println(node.data);
-      }
-  }
+
+        //System.out.println(node.data);
+       /*  print(node.children[0], level + 1);
+        print(node.children[1], level + 1);
+        print(node.children[2], level + 1);
+        print(node.children[3], level + 1);
+        print(node.children[4], level + 1);*/
+      
+    }
+
+        /*System.out.println(node.data);
+        print(node.children[0], level + 1);
+        if(node.children[0] == null) {
+          System.out.println("E");
+          }
+        print(node.children[1], level + 1);
+        if(node.children[1] == null) {
+          System.out.println("E");
+        }
+        print(node.children[2], level + 1);
+        if(node.children[2] == null) {
+          System.out.println("E");
+        }
+        print(node.children[3], level + 1);
+        if(node.children[3] == null) {
+          System.out.println("E");
+        }
+        print(node.children[4], level + 1);
+        if(node.children[4] == null) {
+          System.out.println("E");
+        }*/
 
   public int letterNum(char c){
     if (c == 'A') {
@@ -89,32 +114,14 @@ public class Node {
     return 4;
   }
 
-  public int height(Node node) {
-    if (node == null) {
-      return 0;
-    }
-    int H0 = height(node.children[0]);
-    int H1 = height(node.children[1]);
-    int H2 = height(node.children[2]);
-    int H3 = height(node.children[3]);
-    int H4 = height(node.children[4]);
-
-    List<Integer> numbers = List.of(H0,H1,H2,H3,H4);
-    int max = 0;
-    for (int x = 0; x < 5; x++) {
-      if (numbers.get(1) >= max) {
-        max = numbers.get(1);
-      }
-    }
-    System.out.println(H0);
-    System.out.println(H1);
-    System.out.println(H2);
-    System.out.println(H3);
-    System.out.println(H4);
-
-    System.out.println(max);
-
-    return max + 1;
-
+  public static void testFakeTree() {
+    Node root = new Node();
+    root.isLeaf = false;
+    root.children[0] = new Node("AA");
+    Node n2 = new Node();
+    root.children[2] = n2;
+    n2.children[0] = new Node("GAC");
+    n2.children[3] = new Node("GTT");
+    root.print(root, 0);
   }
 }
