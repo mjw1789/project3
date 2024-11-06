@@ -5,8 +5,6 @@ import java.util.List;
 public class Node {
   private boolean isLeaf;
   private Node[] children = {null, null, null, null, null};
-  //private int level;
-  private String sequence;
   private String data;
 
   public Node(String data) {
@@ -46,57 +44,57 @@ public class Node {
     }
 }
 
-
+int indent = 0;
 //print method
   public void print(Node node, int level) {
+
+    //int indent = 0;
+    String space = "  ";
+
     if (node == null) {
-      System.out.println("E");
-      return;
+      if (indent == 0) {
+        System.out.println("E");
+        return;
+      } else {
+        String print = "";
+          for (int i = 0; i < indent; i++) {
+              print = print + space;
+          }
+          System.out.println(print + "E");
+          return;
+      }
     }
       if (!node.isLeaf) {
-        System.out.println("I");
+        if(indent == 0) {
+          System.out.println("I");
+          indent++;
+        } else {
+          String print = "";
+          for (int i = 0; i < indent; i++) {
+              print = print + space;
+          }
+          System.out.println(print + "I");
+          indent++;
+        }
+        
         print(node.children[0], level + 1);
         print(node.children[1], level + 1);
         print(node.children[2], level + 1);
         print(node.children[3], level + 1);
         print(node.children[4], level + 1);
+        indent--;
+
       }
       if (node.isLeaf) {
         if (node.data != null){
-          System.out.println(node.data);
+          String print = "";
+          for (int i = 0; i < indent; i++) {
+            print = print + space;
+        }
+          System.out.println(print + node.data);
         }
       }
-
-        //System.out.println(node.data);
-       /*  print(node.children[0], level + 1);
-        print(node.children[1], level + 1);
-        print(node.children[2], level + 1);
-        print(node.children[3], level + 1);
-        print(node.children[4], level + 1);*/
-      
     }
-
-        /*System.out.println(node.data);
-        print(node.children[0], level + 1);
-        if(node.children[0] == null) {
-          System.out.println("E");
-          }
-        print(node.children[1], level + 1);
-        if(node.children[1] == null) {
-          System.out.println("E");
-        }
-        print(node.children[2], level + 1);
-        if(node.children[2] == null) {
-          System.out.println("E");
-        }
-        print(node.children[3], level + 1);
-        if(node.children[3] == null) {
-          System.out.println("E");
-        }
-        print(node.children[4], level + 1);
-        if(node.children[4] == null) {
-          System.out.println("E");
-        }*/
 
   public int letterNum(char c){
     if (c == 'A') {
@@ -117,11 +115,10 @@ public class Node {
   public static void testFakeTree() {
     Node root = new Node();
     root.isLeaf = false;
-    root.children[0] = new Node("AA");
-    Node n2 = new Node();
-    root.children[2] = n2;
-    n2.children[0] = new Node("GAC");
-    n2.children[3] = new Node("GTT");
+    root.children[0] = new Node("AAA");
+    Node n3 = new Node();
+    root.children[3] = n3;
+    n3.children[0] = new Node("AA");
     root.print(root, 0);
   }
 }

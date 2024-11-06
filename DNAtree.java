@@ -4,9 +4,9 @@ import java.io.*;
 public class DNAtree {
     public static void main(String[] args) throws Exception {
 
-        //Node.testFakeTree();
+        Node.testFakeTree();
 
-        String fileName = args[0];
+        /*String fileName = args[0];
 
         Node rootNode = new Node(null);
 
@@ -15,28 +15,24 @@ public class DNAtree {
             Scanner fileReader = new Scanner(file);
             while (fileReader.hasNextLine()) {
                 String line = fileReader.nextLine();
-                System.out.println(line);
+                //System.out.println(line);
 
                 System.out.println("Tree dump:");
 
                 if (line.contains("insert")) {
-                    System.out.println("in here");
+                    //System.out.println("in here");
                     String parts[] = line.split(" ");
                     String input = parts[1];
-                    System.out.println(input);
+                    //System.out.println(input);
                     rootNode.insert(rootNode, input, 0); //edit this
                 } else {
                     rootNode.print(rootNode, 0);
                     //System.out.println("sequence " + input + " inserted at level ");
                     }
                 }
-                    //System.out.println("Tree dump:");
-                    
-                    //rootNode.print(rootNode, 0);
-                
             
         } catch (FileNotFoundException e) {
             System.out.println("Invalid File");
-        }
+        }*/
     }
 }
