@@ -115,10 +115,16 @@ int indent = 0;
   public static void testFakeTree() {
     Node root = new Node();
     root.isLeaf = false;
-    root.children[0] = new Node("AAA");
-    Node n3 = new Node();
-    root.children[3] = n3;
-    n3.children[0] = new Node("AA");
+    //root.children[0] = new Node(null);
+    Node n2 = new Node(null);
+    Node n3 = new Node(null);
+    root.children[0] = n2;
+    n2.isLeaf = false;
+    n3.isLeaf = false;
+
+    n2.children[0] = n3;
+    n3.children[0] = new Node("AAA");
+    n3.children[4] = new Node("AA");
     root.print(root, 0);
   }
 }
