@@ -39,8 +39,10 @@ public class Node {
           return insert(node.children[letterNumber], sequence, i + 1);
         }
       }
+    } else {
+      node.children[4] = new Node(sequence);
     }
-    return 17; //check this later
+    return 0; //check this later
 }
 
 int indent = 0;
