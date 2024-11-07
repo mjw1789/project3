@@ -31,10 +31,11 @@ public class DNAtree {
                     } else {
                         if (rootNode == null) {
                             rootNode = new Node(input);
+                            System.out.println("sequence " + input + " inputed at level 0");
                             inputs.add(input);
                         } else {
                             int temp = rootNode.insert(rootNode, input, 0); //edit this
-                            //System.out.println(temp);
+                            System.out.println("sequence " + input + " inputed at level " + temp);
                             inputs.add(input);
                             
                         }
