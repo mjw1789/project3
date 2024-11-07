@@ -16,11 +16,8 @@ public class Node {
   }
 
 //insert method
-  public void insert (Node node, String sequence, int i) {
+  public int insert (Node node, String sequence, int i) {
     //base case - if no tree exists yet
-    if (node == null) {
-      Node root = new Node(sequence);
-    }
 
     //set the current letter to the correct one in the sequence
     if (i < sequence.length()){
@@ -31,17 +28,19 @@ public class Node {
         String s = node.data;
         node.data = null;
         node.isLeaf = false; //not sure about this
-        insert (node, s, i++);
-        insert(node.children[letterNumber], sequence, i++);
+        insert (node, s, i);
+        return insert(node, sequence, i);
       } else if (!node.isLeaf) {
         if(node.children[letterNumber] == null) {
           node.children[letterNumber] = new Node(sequence);
+          return i + 1;
         }
         else {
-          insert(node.children[letterNumber], sequence, i);
+          return insert(node.children[letterNumber], sequence, i + 1);
         }
       }
     }
+    return 17; //check this later
 }
 
 int indent = 0;
@@ -111,13 +110,20 @@ int indent = 0;
     return 4;
   }
 
+
   public static void testFakeTree() {
     Node root = new Node();
     root.isLeaf = false;
-    root.children[0] = new Node("AAA");
+    root.children[4] = new Node("TGC");
+    Node n2 = new Node();
     Node n3 = new Node();
-    root.children[3] = n3;
-    n3.children[0] = new Node("AA");
+    root.children[0] = n2;
+    n2.isLeaf = false;
+    n3.isLeaf = false;
+
+    n2.children[0] = n3;
+    n3.children[0] = new Node("AAA");
+    n3.children[4] = new Node("AA");
     root.print(root, 0);
   }
 }

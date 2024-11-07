@@ -1,31 +1,51 @@
 import java.util.*;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DNAtree {
     public static void main(String[] args) throws Exception {
 
-        Node.testFakeTree();
+        //Node.testFakeTree();
 
-        /*String fileName = args[0];
+        String fileName = args[0];
+        List<String > inputs = new ArrayList<>();
+        inputs.add("testing");
+        boolean good = true;
 
-        Node rootNode = new Node(null);
+        Node rootNode = null;
+
 
         try{
             File file = new File (fileName);
             Scanner fileReader = new Scanner(file);
             while (fileReader.hasNextLine()) {
                 String line = fileReader.nextLine();
-                //System.out.println(line);
 
-                System.out.println("Tree dump:");
-
+                
                 if (line.contains("insert")) {
-                    //System.out.println("in here");
                     String parts[] = line.split(" ");
                     String input = parts[1];
-                    //System.out.println(input);
-                    rootNode.insert(rootNode, input, 0); //edit this
+                    if (inputs.contains(input)) {
+                        System.out.println("sequence " + input + " already exits");
+                    } else {
+                        if (rootNode == null) {
+                            rootNode = new Node(input);
+                            inputs.add(input);
+                        } else {
+                            int temp = rootNode.insert(rootNode, input, 0); //edit this
+                            //System.out.println(temp);
+                            inputs.add(input);
+                            
+                        }
+                    }
+
                 } else {
+                    int y = 0;
+                    if (y == 0) {
+                        System.out.println("Tree dump:");
+                        y++;
+                    }
                     rootNode.print(rootNode, 0);
                     //System.out.println("sequence " + input + " inserted at level ");
                     }
@@ -33,6 +53,6 @@ public class DNAtree {
             
         } catch (FileNotFoundException e) {
             System.out.println("Invalid File");
-        }*/
+        }
     }
 }

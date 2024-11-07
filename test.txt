@@ -1,3 +1,4 @@
-insert AA
 insert AAA
+insert AAA
+insert GCT
 print
