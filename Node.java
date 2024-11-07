@@ -48,7 +48,6 @@ int indent = 0;
 //print method
   public void print(Node node, int level) {
 
-    //int indent = 0;
     String space = "  ";
 
     if (node == null) {
