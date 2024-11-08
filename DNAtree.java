@@ -18,21 +18,21 @@ public class DNAtree {
             File file = new File (fileName);
             Scanner fileReader = new Scanner(file);
             while (fileReader.hasNextLine()) {
-                String line = fileReader.nextLine();
+                String line = fileReader.nextLine(); //reads the file gets each line
 
 
-                if (line.contains("insert")) {
+                if (line.contains("insert")) { //checks if current line is an insert
                     String parts[] = line.split(" ");
                     String input = parts[1];
                     if (inputs.contains(input)) {
                         System.out.println("sequence " + input + " already exits");
-                    } else {
+                    } else { // if current line isn't an insert it will always be a print
                         if (rootNode == null) {
                             rootNode = new Node(input);
                             System.out.println("sequence " + input + " inputed at level 0");
                             inputs.add(input);
                         } else {
-                            int temp = rootNode.insert(rootNode, input, 0); //edit this
+                            int temp = rootNode.insert(rootNode, input, 0); 
                             System.out.println("sequence " + input + " inputed at level " + temp);
                             inputs.add(input);
                             
