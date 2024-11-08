@@ -6,8 +6,6 @@ import java.util.List;
 public class DNAtree {
     public static void main(String[] args) throws Exception {
 
-        //Node.testFakeTree();
-
         String fileName = args[0];
         List<String > inputs = new ArrayList<>();
         inputs.add("testing");
@@ -22,7 +20,7 @@ public class DNAtree {
             while (fileReader.hasNextLine()) {
                 String line = fileReader.nextLine();
 
-                
+
                 if (line.contains("insert")) {
                     String parts[] = line.split(" ");
                     String input = parts[1];
@@ -48,7 +46,6 @@ public class DNAtree {
                         y++;
                     }
                     rootNode.print(rootNode, 0);
-                    //System.out.println("sequence " + input + " inserted at level ");
                     }
                 }
             
